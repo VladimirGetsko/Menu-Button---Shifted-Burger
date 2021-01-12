@@ -1,0 +1,180 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	min-width: 320px;
+	overflow-x: hidden;
+	font-family: $main-font;
+	font-size: $base-size;
+	color: $black-color;
+	line-height: $baze-line;
+	background-color: $white-color;
+	overflow-x: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+p {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+img {
+	display: block;
+	width: 100%;
+}
+
+.container{
+	width: 100%;
+	padding: 0 15px;
+
+	@include min992{
+		margin: 0 auto;
+		max-width: 1135px;
+	}
+
+	@include min1367{
+		max-width: 1310px;
+	}
+}
+
+.title {
+	text-transform: uppercase;
+}
+
+button {
+	&:focus {
+		border: none;
+		outline: none;
+	}
+}
+
+.btn {
+	width: 100%;
+	color: $white-color;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 4px 12px;
+	border: none;
+	cursor: pointer;
+	@extend %PoppinsMedium;
+
+	@include min768 {
+		font-size: 18px;
+		line-height: 27px;
+		padding: 4px 24px;
+	}
+}
+
+// Shifted Burger Start //
+
+:root {
+	--button-width: 75px; // base value (change)
+	--button-height: calc(var(--button-width) * .8);
+	--rectangle-height: calc(var(--button-width) * .1);
+	--rectangle-radius: calc(var(--button-width) * .04);
+	--translate: calc(var(--button-width) * .17);
+	--transition: 0.65s;
+}
+
+body {
+	padding: 2rem;
+}
+
+.box {
+	position: absolute;
+	top: 34px;
+	left: 40px;
+	width: 350px;
+	height: 200px;
+	border-radius: 33px;
+	background-color: grey;
+	opacity: 0;
+	transform: scale(0);
+	transform-origin: top left;
+	transition-property: opacity, transform;
+	transition-duration: var(--transition);
+}
+
+.shifted-burger {
+	position: relative;
+	width: var(--button-width);
+	height: var(--button-height);
+	border: 0;
+	background: transparent;
+	outline: none;
+	cursor: pointer;
+}
+
+.rectangle {
+	position: absolute;
+	height: var(--rectangle-height);
+	background-color: #000000;
+	border-radius: var(--rectangle-radius);
+	transition: transform var(--transition);
+}
+
+.rectangle--small {
+	width: calc(var(--button-width) / 2);
+}
+
+.rectangle--top {
+	top: 0;
+	left: 0;
+	transform-origin: top left;
+}
+
+.rectangle--middle {
+	top: 50%;
+	left: 0;
+	width: var(--button-width);
+	transform: translateY(-50%);
+}
+
+.rectangle--bottom {
+	bottom: 0;
+	right: 0;
+	transform-origin: bottom right;
+}
+
+.rectangle--top.open {
+	transform: translateX(var(--translate)) rotate(45deg);
+}
+
+.rectangle--middle.open {
+	transform: translateY(-50%) rotate(-45deg);
+}
+
+.rectangle--bottom.open {
+	transform: translateX(calc(-1 * var(--translate))) rotate(45deg);
+}
+
+.box.open {
+	opacity: 1;
+	transform: scale(1);
+}
+// Shifted Burger End //
